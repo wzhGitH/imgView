@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./style.css" />
+    <script type="text/javascript" src="./imgView.js"></script>
+</head>
+
+<body class="yys-system">
+    <div class="img-border">
+        <div class="form-horizontal clear-float" id="imgList">
+        </div>
+    </div>
+    <!-- <div class="img-view-dialog">
+        <div class="img-view-mask"></div>
+        <div class="img-view-content" draggable>
+            <div class="img-view-body">
+                <img class="dialog-img" src="">
+            </div>
+            <div class="dialog-tool">
+                <a href="" class="close-dialog" ng-click="backoff()"></a>
+                <a href="" class="rotate-dialog" ng-click="rotate()"></a>
+                <a href="" ng-show="preTrue" class="previous-dialog" ng-click="previous()"></a>
+                <a href="" ng-show="nextTrue" class="next-dialog" ng-click="next()"></a>
+            </div>
+        </div>
+    </div> -->
+    <div id="imgView"></div>
+    <script type="text/javascript">
+        var dataList = ["./images/7.jpg", "./images/11.jpg",
+            "./images/16.jpg", "./images/30.jpg", "./images/test.jpg", "./images/bg1.jpg"
+        ];
+        var currentSrc = "";
+        var html = "";
+        var index = 0;
+        var imgList = document.getElementById("imgList");
+        for (var i = 0; i < dataList.length; i++) {
+            var nameList = dataList[i].split("/");
+            html += "<div class='col-md-3'><div class='img-div'><img class='img-item' src=" + dataList[i] + " /></div><div class='img-name'>" + nameList[2] + "</div></div>"
+        }
+        imgList.innerHTML = html;
+        var imgItem = document.getElementsByClassName("img-item");
+        for (var j = 0; j < imgItem.length; j++) {
+            imgItem[j].index = j;
+            imgItem[j].addEventListener("click", function(event) {
+                var i = this.index;
+                var src = event.target.attributes[1].value;
+                var options = {
+                    dataList: dataList,
+                    currentSrc: src
+                };
+                ImgView("imgView", options);
+            })
+        }
+    </script>
+</body>
+
+</html>
