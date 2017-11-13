@@ -155,6 +155,9 @@
         prev: function(_this) {
             var dialogImg = document.getElementById("dialogImg");
             var thisSrc = dialogImg.attributes[2].value;
+            if (thisSrc.indexOf("width:") != -1 || thisSrc.indexOf("height:") != -1) {
+                thisSrc = dialogImg.attributes[3].value;
+            }
             var dataList = _this.options.dataList;
             var index = dataList.indexOf(thisSrc);
             if (index > 0 && index <= (dataList.length - 1)) {
